@@ -204,7 +204,7 @@
                           type: 'line',
                           mode: 'horizontal',
                           scaleID: 'y-axis-0',
-                          value: '1800',
+                          value: '1600',
                           borderColor: 'red',
                           borderWidth: 2
                       }]

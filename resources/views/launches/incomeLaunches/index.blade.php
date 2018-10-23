@@ -124,7 +124,7 @@
 						<div class="row">	    
 						   	<div class="form-group col-md-12">	      
 								<label for="observation">Observação</label>	      
-								<input type="text" class="form-control" id="observation" name="observation" value="{{old('observation')}}" required>
+								<input type="text" class="form-control" id="observation" name="observation" value="{{old('observation')}}">
 							</div>	
 						</div>							
 						<div class="row">
@@ -186,7 +186,7 @@
 						<div class="row">	    
 						   	<div class="form-group col-md-12">	      
 								<label for="observation">Observação</label>	      
-								<input type="text" class="form-control" id="observation" name="observation" value="{{old('observation')}}" required>
+								<input type="text" class="form-control" id="observation" name="observation" value="{{old('observation')}}">
 							</div>	
 						</div>							
 						<div class="row">

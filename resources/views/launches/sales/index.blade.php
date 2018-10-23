@@ -136,7 +136,7 @@
 						<div class="row">	    
 						   	<div class="form-group col-md-12">	      
 								<label for="campo1">Observação</label>	      
-								<input type="text" class="form-control" id="observation" name="observation" value="{{old('price')}}" required>
+								<input type="text" class="form-control" id="observation" name="observation" value="{{old('price')}}">
 							</div>	
 						</div>							
 						<div class="row">
