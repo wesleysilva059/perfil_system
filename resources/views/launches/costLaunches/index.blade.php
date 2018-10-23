@@ -94,17 +94,17 @@
 							</div>
 							<div class="form-group col-md-9">	      
 								<label for="campo1">Descrição</label>	      
-								<input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
+								<input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required>
 							</div>
 						</div>		  
 						<div class="row">	    
 						   	<div class="form-group col-md-6">	      
 								<label for="date">Data</label>	      
-								<input type="date" class="form-control" id="date" name="date" value="{{$today or old('date')}}">
+								<input type="date" class="form-control" id="date" name="date" value="{{$today or old('date')}}" required>
 							</div>
 							<div class="form-group col-md-6">	      
 								<label for="employee_id">Funcionario</label>	      
-								<select name="employee_id" class="form-control" id="employee_id">
+								<select name="employee_id" class="form-control" id="employee_id" required>
 									<option value="">Selecione o funcionário</option>
 									@foreach($employee_list as $e)
 										<option value="{{$e->id}}">{{$e->name}}</option>
@@ -115,7 +115,7 @@
 						<div class="row">	    
 						   	<div class="form-group col-md-7">	      
 								<label for="campo1">Valor</label>	      
-								<input type="text" class="form-control" id="price" name="price" value="{{old('price')}}">
+								<input type="text" class="form-control" id="price" name="price" value="{{old('price')}}" required>
 							</div>	
 						</div>
 						<div class="row">	    
@@ -126,7 +126,7 @@
 						</div>							
 						<div class="row">
 					    	<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-					    	<button type="submit" class="btn btn-primary">Gravar</button>
+					    	<button type="submit" id="submit" class="btn btn-primary">Gravar</button>
 						</div>
 					</form>	
 				</div>
@@ -152,17 +152,17 @@
 							</div>
 							<div class="form-group col-md-9">	      
 								<label for="name">Descrição</label>	      
-								<input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
+								<input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required>
 							</div>
 						</div>		  
 						<div class="row">	    
 						   	<div class="form-group col-md-6">	      
 								<label for="date">Data</label>	      
-								<input type="date" class="form-control" id="date" name="date" value="{{old('date')}}">
+								<input type="date" class="form-control" id="date" name="date" value="{{old('date')}}" required>
 							</div>
 							<div class="form-group col-md-6">	      
 								<label for="employee_id">Funcionario</label>	      
-								<select name="employee_id" class="form-control" id="employee_id">
+								<select name="employee_id" class="form-control" id="employee_id" required>
 									<option id="employee_id" value=""></option>
 									option
 									@foreach($employee_list as $e)
@@ -175,13 +175,13 @@
 						   	<div class="form-group col-md-7">	      
 								R$ 
 								<label for="price">Valor</label>	      
-								<input type="text" class="form-control price" id="price" name="price" value="{{old('price')}}">
+								<input type="text" class="form-control price" id="price" name="price" value="{{old('price')}}" required>
 							</div>	
 						</div>
 						<div class="row">	    
 						   	<div class="form-group col-md-12">	      
 								<label for="observation">Observação</label>	      
-								<input type="text" class="form-control" id="observation" name="observation" value="{{old('observation')}}">
+								<input type="text" class="form-control" id="observation" name="observation" value="{{old('observation')}}" required>
 							</div>	
 						</div>							
 						<div class="row">
@@ -238,6 +238,10 @@
 				price.val(cost.price);
 			});
 		});
+	});
+
+	$("#submit").click(function(){
+	    $("#myModal").modal(show);
 	});
 </script>
 	    

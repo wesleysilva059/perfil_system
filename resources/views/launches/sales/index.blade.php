@@ -101,17 +101,17 @@
 							</div>
 							<div class="form-group col-md-9">	      
 								<label for="campo1">Descrição</label>	      
-								<input type="text" class="form-control" id="name" name="name" value="{{old('price')}}">
+								<input type="text" class="form-control" id="name" name="name" value="{{old('price')}}" required>
 							</div>
 						</div>		  
 						<div class="row">	    
 						   	<div class="form-group col-md-6">	      
 								<label for="date">Data</label>	      
-								<input type="date" class="form-control" id="date" name="date" value="{{$today or old('date')}}">
+								<input type="date" class="form-control" id="date" name="date" value="{{$today or old('date')}}" required>
 							</div>
 							<div class="form-group col-md-6">	      
 								<label for="employee_id">Funcionario</label>	      
-								<select name="employee_id" class="form-control" id="employee_id">
+								<select name="employee_id" class="form-control" id="employee_id" required>
 									<option value="">Selecione o funcionário</option>
 									@foreach($employee_list as $e)
 										<option value="{{$e->id}}">{{$e->name}}</option>
@@ -122,21 +122,21 @@
 						<div class="row">	    
 						   	<div class="form-group col-md-4">	      
 								<label for="campo1">Quantidade</label>	      
-								<input type="number" class="form-control" id="amount" name="amount" value="{{old('amount')}}" >
+								<input type="number" class="form-control" id="amount" name="amount" value="{{old('amount')}}" required>
 							</div>
 							<div class="form-group col-md-4">	      
 								<label for="campo1">Valor Unitario</label>	      
-								<input type="number" class="form-control" id="priceUnit" name="priceUnit" value="{{old('priceUnit')}}">
+								<input type="number" class="form-control" id="priceUnit" name="priceUnit" value="{{old('priceUnit')}}" required>
 							</div>
 						   	<div class="form-group col-md-4">	      
 								<label for="campo1">Valor Total</label>	      
-								<input type="number" class="form-control" id="priceTotal" name="priceTotal" value="{{old('priceTotal')}}">
+								<input type="number" class="form-control" id="priceTotal" name="priceTotal" value="{{old('priceTotal')}}" required>
 							</div>	
 						</div>
 						<div class="row">	    
 						   	<div class="form-group col-md-12">	      
 								<label for="campo1">Observação</label>	      
-								<input type="text" class="form-control" id="observation" name="observation" value="{{old('price')}}">
+								<input type="text" class="form-control" id="observation" name="observation" value="{{old('price')}}" required>
 							</div>	
 						</div>							
 						<div class="row">
