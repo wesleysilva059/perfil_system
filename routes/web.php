@@ -25,12 +25,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('costs','CostsController');
 	Route::resource('incomeLaunches','IncomeLaunchesController');
 		Route::get('/get-income/{income_id}', 'IncomeLaunchesController@getIncome');
+		Route::get('/incomeLaunchesReports', 'IncomeLaunchesController@historic');
 
 	Route::resource('costLaunches','CostLaunchesController');
 		Route::get('/get-cost/{cost_id}', 'CostLaunchesController@getCost');
+		Route::get('/costLaunchesReports', 'CostLaunchesController@historic');
 	
 	Route::resource('sales', 'SalesController');
 		Route::get('/get-product/{product_id}', 'SalesController@getProduct');
+		Route::get('/salesReports', 'SalesController@historic');
 
 
 	

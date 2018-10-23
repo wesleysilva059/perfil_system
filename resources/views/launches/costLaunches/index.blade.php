@@ -1,6 +1,6 @@
 @extends('adminlte::layouts.app')
 @section('contentheader_title')
-	Relação de Despesas Díaria
+	Relação de Despesas {{ucfirst($month_extense)}}
 @endsection
 @section('main-content')
  	<div style="float:right;">
@@ -23,9 +23,9 @@
 					 			<th>ID</th>
 					 			<th>Descrição</th>
 					 			<th>Data</th>
-					 			<th>Observação</th>
 					 			<th>Funcionário</th>
 					 			<th>Valor</th>
+					 			<th>Observação</th>
 					 			<th>Opções</th>
 					 		</tr>
 					 	</thead>

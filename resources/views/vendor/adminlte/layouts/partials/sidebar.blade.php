@@ -52,9 +52,9 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Listagem / Relatórios</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('incomeLaunches') }}">Receitas</a></li>
-                    <li><a href="{{ url('costLaunches') }}">Despesas</a></li>
-                    <li><a href="{{ url('sales') }}">Vendas</a></li>
+                    <li><a href="{{ url('incomeLaunchesReports') }}">Receitas</a></li>
+                    <li><a href="{{ url('costLaunchesReports') }}">Despesas</a></li>
+                    <li><a href="{{ url('salesReports') }}">Vendas</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

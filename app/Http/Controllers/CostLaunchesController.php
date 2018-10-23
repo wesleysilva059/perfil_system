@@ -59,11 +59,15 @@ class CostLaunchesController extends Controller
      */
     public function index()
     {
+        setlocale(LC_ALL, "pt_BR", "pt_BR.iso-8859-1", "pt_BR.utf-8", "portuguese");
+        date_default_timezone_set('America/Sao_Paulo');
+
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 
         $today = date('Y-m-d');
 
         $month = date('m');
+        $month_extense = gmstrftime('%B');
 
         $costLaunches = CostLaunche::whereMonth('date', $month)->get();
 
@@ -75,7 +79,7 @@ class CostLaunchesController extends Controller
 
                //dd($teste, $costLaunches, $costLaunches2, $price);
 
-        return view('launches.costLaunches.index')->with(compact('costLaunches','price','today','employee_list'));
+        return view('launches.costLaunches.index')->with(compact('costLaunches','price','today','employee_list','month_extense'));
     }
 
     public function getCost($cost_id)
@@ -217,5 +221,12 @@ class CostLaunchesController extends Controller
         $this->repository->delete($id);
 
         return redirect()->route('costLaunches.index');
+    }
+
+    public function historic()
+    {
+        $historics = $this->repository->orderBy('date','desc')->paginate($limit = 15, $columns = ['*']);
+
+        return view('reports.costLaunches.index', compact('historics'));
     }
 }

@@ -205,4 +205,13 @@ class IncomeLaunchesController extends Controller
 
         return redirect()->route('incomeLaunches.index');
     }
+
+
+    public function historic()
+    {
+        $historics = $this->repository->orderBy('date','desc')->paginate($limit = 15, $columns = ['*']);
+
+        return view('reports.incomeLaunches.index', compact('historics'));
+    }
+
 }

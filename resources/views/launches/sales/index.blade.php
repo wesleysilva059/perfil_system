@@ -1,6 +1,6 @@
 @extends('adminlte::layouts.app')
 @section('contentheader_title')
-	Venda de Produtos
+	Venda de Produtos {{ucfirst($month_extense)}}
 @endsection
 @section('main-content')
  	<div style="float:right;">

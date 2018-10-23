@@ -60,6 +60,11 @@ class SalesController extends Controller
      */
     public function index()
     {
+        setlocale(LC_ALL, "pt_BR", "pt_BR.iso-8859-1", "pt_BR.utf-8", "portuguese");
+        date_default_timezone_set('America/Sao_Paulo');
+
+        $month_extense = gmstrftime('%B');
+
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         
         $today = date('Y-m-d');
@@ -76,7 +81,7 @@ class SalesController extends Controller
 
                //dd($sales, $employee_list, $price);
 
-        return view('launches.sales.index')->with(compact('sales','price','today','employee_list'));
+        return view('launches.sales.index')->with(compact('sales','price','today','employee_list','month_extense'));
     }
 
     public function getProduct($product_id)
@@ -232,5 +237,12 @@ class SalesController extends Controller
     $this->repository->delete($id);
 
         return redirect()->route('sales.index');
+    }
+
+    public function historic()
+    {
+        $historics = $this->repository->orderBy('date','desc')->paginate($limit = 15, $columns = ['*']);
+
+        return view('reports.sales.index', compact('historics'));
     }
 }
