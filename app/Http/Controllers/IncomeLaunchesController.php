@@ -214,4 +214,9 @@ class IncomeLaunchesController extends Controller
         return view('reports.incomeLaunches.index', compact('historics'));
     }
 
+    public function search(request $request)
+    {
+        dataForm($request->all());
+    }
+
 }

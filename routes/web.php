@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('incomeLaunches','IncomeLaunchesController');
 		Route::get('/get-income/{income_id}', 'IncomeLaunchesController@getIncome');
 		Route::get('/incomeLaunchesReports', 'IncomeLaunchesController@historic');
+		Route::post('/incomeLaunchesSearch', 'IncomeLaunchesController@search')->name('incomeLaunches.search');
 
 	Route::resource('costLaunches','CostLaunchesController');
 		Route::get('/get-cost/{cost_id}', 'CostLaunchesController@getCost');
