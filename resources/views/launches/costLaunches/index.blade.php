@@ -13,6 +13,22 @@
 	</div>
  	 <br><br>
  	<div class="box box-primary">
+ 		<div class="box-header">
+            <form action="{{route('costLaunches.indexSearch')}}" method="POST" class="form form-inline">
+                {!! csrf_field() !!}
+                <input type="text" name="cost_id" class="form-control" placeholder="Id Despesa">
+				<label for="date_init">Data</label>                
+                <input type="date" name="date" class="form-control">
+                <select name="employee_id" class="form-control">
+                    <option value="">-- Funcionário --</option>
+                    @foreach($employee_list as $employee)
+                    <option value="{{$employee->id}}">{{$employee->name}}</option>
+                    @endforeach
+                </select>                
+
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </form>
+        </div>
  		<div class="row">
  			<div class="col-sm-12">
  				<div class="box-body">

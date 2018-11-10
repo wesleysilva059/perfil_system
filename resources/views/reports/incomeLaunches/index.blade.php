@@ -8,14 +8,16 @@
  		<div class="box-header">
             <form action="{{route('incomeLaunches.search')}}" method="POST" class="form form-inline">
                 {!! csrf_field() !!}
-                <input type="text" name="description" class="form-control" placeholder="Serviços">
+                <input type="text" name="income_id" class="form-control" placeholder="Id Serviços">
 				<label for="date_init">Data Inicial</label>                
                 <input type="date" name="date_init" class="form-control">
                 <label for="date_end">Data Final</label>
                 <input type="date" name="date_end" class="form-control">
                 <select name="employee_id" class="form-control">
                     <option value="">-- Funcionário --</option>
-                    
+                    @foreach($employee_list as $employee)
+                    <option value="{{$employee->id}}">{{$employee->name}}</option>
+                    @endforeach
                 </select>                
 
                 <button type="submit" class="btn btn-primary">Pesquisar</button>

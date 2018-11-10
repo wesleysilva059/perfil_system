@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Repositories\EmployeeRepository;
+use App\Entities\IncomeLaunche;
 
 /**
  * Class IncomeLaunchesController.
@@ -70,6 +71,20 @@ class IncomeLaunchesController extends Controller
                 ->sum('price');
 
         return view('launches.incomeLaunches.index', compact('incomeLaunches','price','today','employee_list'));
+    }
+
+    public function indexSearch(Request $request, IncomeLaunche $incomeLaunche)
+    {
+
+        $dataForm = $request->except('_token');
+
+        $incomeLaunches = $incomeLaunche->searchIndex($dataForm);
+
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        $price = $incomeLaunche->searchPrice($dataForm);
+
+        return view('launches.incomeLaunches.index', compact('incomeLaunches', 'price', 'employee_list', 'dataForm'));
     }
 
     public function getIncome($income_id)
@@ -211,12 +226,20 @@ class IncomeLaunchesController extends Controller
     {
         $historics = $this->repository->orderBy('date','desc')->paginate($limit = 15, $columns = ['*']);
 
-        return view('reports.incomeLaunches.index', compact('historics'));
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        return view('reports.incomeLaunches.index', compact('historics','employee_list'));
     }
 
-    public function search(request $request)
+    public function search(Request $request, IncomeLaunche $incomeLaunche)
     {
-        dataForm($request->all());
+        $dataForm = $request->except('_token');
+
+        $historics = $incomeLaunche->search($dataForm, '15');
+
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        return view('reports.incomeLaunches.index', compact('historics', 'employee_list', 'dataForm'));
     }
 
 }

@@ -146,8 +146,10 @@ class CostsController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CostUpdateRequest $request, $id)
+    public function update(CostUpdateRequest $request)
     {
+        $id = $request->id;
+        
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);

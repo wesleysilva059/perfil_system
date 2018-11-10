@@ -84,6 +84,23 @@ class SalesController extends Controller
         return view('launches.sales.index')->with(compact('sales','price','today','employee_list','month_extense'));
     }
 
+    public function indexSearch(Request $request, Sale $sale)
+    {
+
+        $dataForm = $request->except('_token');
+
+        $month_extense = "";
+
+
+        $sales = $sale->searchIndex($dataForm);
+
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        $price = $sale->searchPrice($dataForm);
+
+        return view('launches.sales.index', compact('sales', 'price', 'employee_list', 'dataForm', 'month_extense'));
+    }
+
     public function getProduct($product_id)
     {
         $product = $this->product->find($product_id);
@@ -243,6 +260,19 @@ class SalesController extends Controller
     {
         $historics = $this->repository->orderBy('date','desc')->paginate($limit = 15, $columns = ['*']);
 
-        return view('reports.sales.index', compact('historics'));
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        return view('reports.sales.index', compact('historics','employee_list'));
+    }
+
+    public function search(Request $request, Sale $sales)
+    {
+        $dataForm = $request->except('_token');
+
+        $historics = $sales->search($dataForm, '15');
+
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        return view('reports.sales.index', compact('historics', 'employee_list', 'dataForm'));
     }
 }

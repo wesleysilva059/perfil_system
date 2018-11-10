@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\repositories\EmployeeRepository;
+use App\Repositories\EmployeeRepository;
 use App\Entities\CostLaunche;
 
 /**
@@ -80,6 +80,23 @@ class CostLaunchesController extends Controller
                //dd($teste, $costLaunches, $costLaunches2, $price);
 
         return view('launches.costLaunches.index')->with(compact('costLaunches','price','today','employee_list','month_extense'));
+    }
+
+    public function indexSearch(Request $request, CostLaunche $costLaunche)
+    {
+
+        $dataForm = $request->except('_token');
+
+        $month_extense = "";
+
+
+        $costLaunches = $costLaunche->searchIndex($dataForm);
+
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        $price = $costLaunche->searchPrice($dataForm);
+
+        return view('launches.costLaunches.index', compact('costLaunches', 'price', 'employee_list', 'dataForm', 'month_extense'));
     }
 
     public function getCost($cost_id)
@@ -227,6 +244,19 @@ class CostLaunchesController extends Controller
     {
         $historics = $this->repository->orderBy('date','desc')->paginate($limit = 15, $columns = ['*']);
 
-        return view('reports.costLaunches.index', compact('historics'));
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        return view('reports.costLaunches.index', compact('historics','employee_list'));
+    }
+
+    public function search(Request $request, CostLaunche $incomeLaunche)
+    {
+        $dataForm = $request->except('_token');
+
+        $historics = $incomeLaunche->search($dataForm, '15');
+
+        $employee_list = $this->employeeRepository->all(['id','name']);
+
+        return view('reports.costLaunches.index', compact('historics', 'employee_list', 'dataForm'));
     }
 }

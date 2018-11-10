@@ -42,4 +42,15 @@ class Client extends Model implements Transformable
 
     }
 
+    public function getFormatedBirthAttribute()
+    {
+        $birth = explode('-', $this->attributes['birth']);
+
+        if(count($birth) != 3)
+            return "";
+
+        $birth = $birth[2]. '/' . $birth[1] . '/' . $birth[0];
+        return $birth;
+    }
+
 }
